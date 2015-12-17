@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 edit Region
+  form.form-horizontal(id='edit_region', method='POST', action='/region/#{region._id}')
+    input(type='hidden', name='_csrf', value=_csrf)
+    input(type='hidden', name='_method', value='PUT')
+    input(type='hidden', name='id', value='#{region._id}')
+    .form-group
+      label.col-sm-3.control-label(for='name') region Name
+      .col-sm-7
+        input.form-control(type='text', name='name', id='name', value='#{region.name}', autofocus)
+    .form-group
+      .col-sm-offset-3.col-sm-7
+        button.btn.btn-success(type='submit')
+          i.fa.fa-user-plus
+          | update

@@ -1,0 +1,36 @@
+nav .brand-logo {
+    padding: 0 20px;
+}
+
+div .fab_a {
+    position: relative;
+    top: 45px;
+    left: 38px;
+}
+
+div .fab_b {
+    position: absolute;
+}
+
+#fab_ul {
+    right: 40px;
+
+}
+
+#fab_li {
+    margin: 0 5px;
+}
+#chip {
+    margin-top:20px;
+}
+
+#click {
+    cursor: pointer;
+}
+
+div .cart_a {
+    position: relative;
+    top: 45px;
+    left: 38px;
+    
+}

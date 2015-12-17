@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 edit Land
+    form.form-horizontal(id='edit_land', method='POST', action='/country/#{country._id}')
+      input(type='hidden', name='_csrf', value=_csrf)
+      input(type='hidden', name='_method', value='PUT')
+      input(type='hidden', name='id', value='#{country._id}')
+      .form-group
+        label.col-sm-3.control-label(for='name') Land Name
+        .col-sm-7
+          input.form-control(type='text', name='name', id='name', value='#{country.name}', autofocus)
+      .form-group
+        .col-sm-offset-3.col-sm-7
+          button.btn.btn-success(type='submit')
+            i.fa.fa-user-plus
+            | update

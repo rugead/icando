@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 edit canyon
+    div.row
+      div.col.s4
+        form(id='edit_canyon', method='POST', action='/canyon/#{canyon._id}')
+          input(type='hidden', name='_csrf', value=_csrf)
+          input(type='hidden', name='_method', value='PUT')
+          input(type='hidden', name='id', value='#{canyon._id}')
+          label.control-label(for='name') Land Name
+          input.form-control(type='text', name='name', id='name', value='#{canyon.name}', autofocus)
+          label.control-label(for='region') Region
+          input.form-control(type='text', name='region', id='region', value='#{canyon.region}')
+          label.control-label(for='country') Country
+          input.form-control(type='text', name='country', id='country', value='#{canyon.country}')
+          button.btn.btn-success(type='submit') update
+      
+      // div.col.s4      
+      //   ul.collection
+      //     for country in countries
+      //       li.click_country.collection-item#click #{country.name}
+            
+      // div.col.s4
+      //   ul.collection
+      //     for region in regions
+      //       li.click_region.collection-item#click #{region.name}

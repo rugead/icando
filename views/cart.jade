@@ -1,0 +1,59 @@
+extends ./layout
+
+block content
+
+  div.row
+    div.col.s12.m6.l6    
+      a.btn-floating.blue-grey.right(href='/cart/delete')
+        i.material-icons delete
+      h4 Warenkorb
+      hr
+  div.row    
+    div.col.s12.m6.l6  
+      for item in cart.items
+      
+      
+        if (item.qty >= 1)
+          div.card
+            div.card-image 
+            div.card-content
+              div.cart_a
+                div.fixed-action-btn.horizontal.fab_b
+                  a.btn-floating.btn-tiny.blue-grey
+                    i.material-icons mode_edit
+                  ul#fab_ul
+                    
+                    li#fab_li
+                      form(method='POST', action='cart/remove')
+                        input(type='hidden' name='_csrf' value=_csrf)
+                        input(type="hidden" name="item_id" value='#{item.xid}')
+                        button.btn-floating.btn-tiny.waves-effect.waves-light.red
+                          i.material-icons delete
+                    if (item.qty >= 1)
+                      li#fab_li
+                        form(method='POST', action='cart/minus')
+                          input(type='hidden' name='_csrf' value=_csrf)
+                          input(type="hidden" name="item_id" value='#{item.xid}')
+                          button.btn-floating.btn-tiny.waves-effect.waves-light.red
+                            i.material-icons remove_circle_outline
+                    li#fab_li
+                      form(method='POST', action='cart/plus')
+                        input(type='hidden' name='_csrf' value=_csrf)
+                        input(type="hidden" name="item_id" value='#{item.xid}')
+                        button.btn-floating.btn-tiny.waves-effect.waves-light.teal
+                          i.material-icons add_circle_outline
+            
+              span #{item.qty} x #{item.name} a #{item.prettyPrice}  
+              p am #{item.wochentag}, #{item.dwd}
+                br 
+                | Mit Max. #{item.pax_max} Personen. Noch #{item.pax_available} Plätze frei.
+        
+        
+      div.card
+        div.card-content
+          span.card-title Warenkorb - Summe #{cart.total} EUR
+          
+          form(method='GET', action='/order')
+            input(type='hidden' name='_csrf' value=_csrf)
+            button.waves-effect.waves-light.btn(type='submit') Buchen
+              i.material-icons.left shopping_cart

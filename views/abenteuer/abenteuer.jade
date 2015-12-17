@@ -1,0 +1,45 @@
+extends ../layout
+
+block content
+  h2 Abenteuer
+  hr
+
+  div.row
+    for abenteuer in abenteuers
+      div.col.s12.m6.l4
+        div.card
+          div.card-image 
+          div.card-content
+          
+            div.cart_a
+              div.fixed-action-btn.horizontal.fab_b
+                a.btn-floating.btn-tiny.blue-grey
+                  i.tiny.mdi-navigation-menu
+                ul#fab_ul
+                  li#fab_li
+                    a.btn-floating.brown(href='/abenteuer/edit/#{abenteuer._id}')
+                      i.material-icons edit
+                  li#fab_li
+                    form.form-horizontal(id='delete_schlucht', method='POST', action='/abenteuer/delete/#{abenteuer._id}')
+                      input(type='hidden', name='_csrf', value=_csrf)
+                      input(type='hidden', name='id', value='#{abenteuer._id}')
+                      input(type='hidden', name='_method', value='delete')
+                      button.btn-floating.deep-orange(type='submit')
+                        i.material-icons clear
+            span.card-title
+                a(href='/abenteuer/#{abenteuer._id}') #{abenteuer.name}
+            div= abenteuer.city
+     
+            div #{abenteuer.region} / #{abenteuer.country}
+            div= abenteuer.prettyDwd
+            div= abenteuer.prettyPrice
+            div= abenteuer.pax_booked
+            div= abenteuer.pax_max
+          div.card-action
+          
+            form(method='POST', action='/cart')
+              input(type='hidden' name='item_id' value='#{abenteuer._id}')
+              input(type='hidden' name='_csrf' value=_csrf)
+              button.waves-effect.waves-light.btn(type='submit') In den Warenkorb
+                i.material-icons.left shopping_cart
+                 

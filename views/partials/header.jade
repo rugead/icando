@@ -1,0 +1,72 @@
+nav
+  div.nav-wrapper
+    a.brand-logo(href='#!') icando.de
+    a.button-collapse(href='#', data-activates='mobile-demo')
+      i.material-icons menu
+    ul#id-mobile.right.hide-on-med-and-down
+      li  
+        a(href='/canyons') Schluchten
+      li  
+        a(href='/abenteuer') Abenteuer
+      li
+        a(href='/contact') Contact
+      li
+        a(href='/regions') Regionen
+      li  
+        a(href='/countries') Countries
+      li
+        a(href='/cart') 
+          i.material-icons shopping_cart
+      if user  
+        li
+          a.dropdown-button(href='#!', data-activates='neu') NEU
+            i.material-icons.right arrow_drop_down
+      if !user
+          li(class=title=='Login'?'active':undefined)
+            a(href='/login') Login
+          li(class=title=='Create Account'?'active':undefined)
+            a(href='/signup') Create Account
+        else
+          li
+            a.dropdown-button(href='#!', data-activates='account') #{user.profile.name || user.email || user.id} 
+              i.material-icons.right arrow_drop_down
+            
+        
+    ul#account.dropdown-content
+      li
+        a(href='/account') My Account
+      li
+        a(href='/logout') Logout
+        
+    ul#neu.dropdown-content
+      li
+        a(href='/country/new') Neues Land
+      li
+        a(href='/canyon/new') Neue Schluchten
+      li
+        a(href='/region/new') Neue Region
+        
+    ul#mobile-demo.side-nav
+      li  
+        a(href='/canyons') Schluchten
+      li  
+        a(href='/abenteuer') Abenteuer
+      li
+        a(href='/contact') Contact
+      li
+        a(href='/regions') Regionen
+      li  
+        a(href='/countries') Countries
+      if user  
+        li
+          a.dropdown-button(href='#!', data-activates='neu') NEU
+            i.material-icons.right arrow_drop_down
+      if !user
+          li(class=title=='Login'?'active':undefined)
+            a(href='/login') Login
+          li(class=title=='Create Account'?'active':undefined)
+            a(href='/signup') Create Account
+        else
+          li
+            a.dropdown-button(href='#!', data-activates='account') #{user.profile.name || user.email || user.id} 
+              i.material-icons.right arrow_drop_down

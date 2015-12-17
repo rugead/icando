@@ -1,0 +1,47 @@
+extends ../layout
+
+block content
+    h3= title
+    div.row
+      div.col.s4
+        div= abenteuer
+        form(id='edit_abenteuer', method='POST', action='/abenteuer/#{abenteuer._id}')
+          input(type='hidden', name='_csrf', value=_csrf)
+          input(type='hidden', name='_method', value='PUT')
+          input(type='hidden', name='id', value='#{abenteuer._id}')
+          
+          label.control-label(for='name') Land Name
+          input.form-control(type='text', name='name', id='name', value='#{abenteuer.name}', autofocus)
+          
+          label.control-label(for='city') Stadt
+          input.form-control(type='text', name='city', id='city', value='#{abenteuer.city}')
+          
+          label.control-label(for='region') Region
+          input.form-control(type='text', name='region', id='region', value='#{abenteuer.region}')
+          
+          label.control-label(for='country') Country
+          input.form-control(type='text', name='country', id='country', value='#{abenteuer.country}')
+          
+          label.control-label(for='dwd') Datum
+          input.form-control.datepicker(type='date', name='dwd', id='dwd', value='#{abenteuer.prettyDwd}')
+        
+          label.control-label(for='price') Preis pro Person
+          input.form-control(type='text', name='price', id='price', value='#{abenteuer.prettyEditPrice}')
+          
+          label.control-label(for='pax_max') Max Gäste
+          input.form-control(type='text', name='pax_max', id='pax_max', value='#{abenteuer.pax_max}')
+          
+          label.control-label(for='pax_booked') belegt / noch frei
+          input.form-control(type='text', name='pax_booked', id='pax_booked', value='#{abenteuer.pax_booked}')
+          
+          button.btn.btn-success(type='submit') update
+      
+      // div.col.s4      
+      //   ul.collection
+      //     for country in countries
+      //       li.click_country.collection-item#click #{country.name}
+            
+      // div.col.s4
+      //   ul.collection
+      //     for region in regions
+      //       li.click_region.collection-item#click #{region.name}

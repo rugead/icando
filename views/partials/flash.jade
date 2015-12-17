@@ -1,0 +1,14 @@
+if messages.errors
+  for error in messages.errors
+    div.chip#chip= error.msg
+      i.material-icons close
+
+if messages.info
+  for info in messages.info
+    div.chip#chip= info.msg
+      i.material-icons close
+
+if messages.success
+  for success in messages.success
+      div.chip#chip= success.msg
+          i.material-icons close

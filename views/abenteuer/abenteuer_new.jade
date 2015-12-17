@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+
+  h3= title
+  div User: #{user.profile.name || user.email || user.id} 
+  div.row
+    div.col.s4
+      form(id='neue_schlucht', method='POST', action='/abenteuer')
+        input(type='hidden', name='_csrf', value=_csrf)
+        input(type='hidden', name='user_id', value=user.id)
+    
+        label(for='name') Schlucht Name
+        input.form-control(type='text', name='name', id='name', value='#{name}', autofocus)
+        
+        label.control-label(for='city') Stadt
+        input.form-control(type='text', name='city', id='city')
+  
+        label.control-label(for='region') Region
+        input.form-control(type='text', name='region', id='region', value='#{region}')
+  
+        label.control-label(for='country') Land
+        input.form-control(type='text', name='country', id='country', value='#{country}')
+  
+        label.control-label(for='dwd') Datum
+        input.form-control.datepicker(type='date', name='dwd', id='dwd')
+        
+        label.control-label(for='price') Preis pro Person
+        input.form-control(type='text', name='price', id='price')
+        
+        label.control-label(for='pax_max') Max Gäste
+        input.form-control(type='text', name='pax_max', id='pax_max')
+        
+        label.control-label(for='pax_booked') belegt / noch frei
+        input.form-control(type='text', name='pax_booked', id='pax_booked')
+  
+        button.btn.btn-success(type='submit')
+          i.fa.fa-user-plus
+          | create
+  

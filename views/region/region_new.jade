@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 neue region
+    div User: #{user.profile.name || user.email || user.id} 
+  form.form-horizontal(id='neue_region', method='POST', action='/region')
+    input(type='hidden', name='_csrf', value=_csrf)
+    input(type='hidden', name='user_id', value=user.id)
+    .form-group
+      label.col-sm-3.control-label(for='name') region Name
+      .col-sm-7
+        input.form-control(type='text', name='name', id='name', placeholder='Name', autofocus)
+    .form-group
+      .col-sm-offset-3.col-sm-7
+        button.btn.btn-success(type='submit')
+          i.fa.fa-user-plus
+          | create

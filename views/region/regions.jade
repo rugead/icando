@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+  h2 Regionen
+  hr
+
+  div.row
+    for region in regions
+      div.col.s12.m4.l3
+        div.card
+          div.card-image 
+          div.card-content
+            
+            div.fab_a
+              div.fixed-action-btn.horizontal.fab_b
+                a.btn-floating.btn-tiny.blue-grey
+                  i.tiny.mdi-navigation-menu
+                ul#fab_ul
+                  li#fab_li
+                    a.btn-floating.green.darken-2(href='/region/new')
+                      i.material-icons add
+                  li#fab_li
+                    a.btn-floating.brown(href='/region/edit/#{region._id}')
+                      i.material-icons edit
+                  li#fab_li
+                    form.form-horizontal(id='delete_region', method='POST', action='/region/delete/#{region._id}')
+                      input(type='hidden', name='_csrf', value=_csrf)
+                      input(type='hidden', name='id', value='#{region._id}')
+                      input(type='hidden', name='_method', value='delete')
+                      button.btn-floating.deep-orange(type='submit')
+                        i.material-icons clear
+       
+            span.card-title
+               a(href='/region/#{region._id}') #{region.name}
+            div= region.user_id
+          div.card-action

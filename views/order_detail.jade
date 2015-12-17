@@ -1,0 +1,41 @@
+extends ./layout
+
+block content
+
+  div.row
+    div.col.s12.m10.l8
+      div.card
+        div.card-content
+          h5 Bestellstatus: #{order.state}
+          p Buchunhsnummer: #{order.order_id}
+          p Payment ID: #{order.payment_id}
+  
+  div.row
+    div.col.s12.m10.l8
+    
+      div.card
+        div.card-content
+          p Hallo #{order.paypal_recipient_name || order.paypal_email}, 
+          p vielen dank für deine Buchung. 
+            br
+            | Ich freue mich auf die gemeinsame(n) Canyoning-Tour(en). 
+            | Eine Bestätigungs Email wurde an  #{order.paypal_email} versendet.
+            | Eine Email mit Ort und Uhrzeit des Treffpunkts wird separat versendet. 
+  
+  div.row
+    div.col.s12.m10.l8  
+      for item in order.item_list
+        div.card
+          div.card-image 
+          div.card-content
+            span #{item.quantity} x #{item.name} für #{item.price} EUR pro Person  
+            p gebucht am #{item.dwd}
+            
+   div.row
+    div.col.s12.m10.l8  
+      for item in order.paypal_transactions
+        div.card
+          div.card-image 
+          div.card-content
+            div Gesamtsumme: #{item.amount.total}  #{item.amount.currency}
+            

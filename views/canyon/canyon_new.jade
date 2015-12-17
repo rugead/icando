@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 neue Schlucht
+    div User: #{user.profile.name || user.email || user.id} 
+    div.row
+      div.col.s4
+        form(id='neue_schlucht', method='POST', action='/canyon')
+          input(type='hidden', name='_csrf', value=_csrf)
+          input(type='hidden', name='user_id', value=user.id)
+      
+          label(for='name') Land Name
+          input.form-control(type='text', name='name', id='name', placeholder='Name', autofocus)
+    
+          label.control-label(for='region') Region
+          input.form-control(type='text', name='region', id='region')
+    
+          label.control-label(for='country') Country
+          input.form-control(type='text', name='country', id='country')
+    
+          button.btn.btn-success(type='submit')
+            i.fa.fa-user-plus
+            | create
+  
+      div.col.s4      
+         ul.collection
+          for country in countries
+            li.click_country.collection-item#click #{country.name}
+            
+      div.col.s4
+        ul.collection
+          for region in regions
+            li.click_region.collection-item#click #{region.name}

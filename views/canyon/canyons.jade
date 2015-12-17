@@ -1,0 +1,46 @@
+extends ../layout
+
+block content
+  h2 Schluchten
+  hr
+
+  div.row
+    for canyon in canyons
+      div.col.s12.m4.l3
+        div.card
+          div.card-image 
+          div.card-content
+          
+            div.fab_a
+              div.fixed-action-btn.horizontal.fab_b
+                a.btn-floating.btn-tiny.blue-grey
+                  i.tiny.mdi-navigation-menu
+                ul#fab_ul
+                  li#fab_li
+                    a.btn-floating.brown(href='/canyon/edit/#{canyon._id}')
+                      i.material-icons edit
+                  li#fab_li
+                    form.form-horizontal(id='delete_schlucht', method='POST', action='/canyon/delete/#{canyon._id}')
+                      input(type='hidden', name='_csrf', value=_csrf)
+                      input(type='hidden', name='id', value='#{canyon._id}')
+                      input(type='hidden', name='_method', value='delete')
+                      button.btn-floating.deep-orange(type='submit')
+                        i.material-icons clear
+                  li#fab_li
+                    a.btn-floating.green.darken-2(href='/canyon/new')
+                      i.material-icons add
+       
+            span.card-title
+                a(href='canyon/#{canyon._id}') #{canyon.name}
+            div= canyon.country
+            div= canyon.region
+            div= canyon.user_id
+            form.form-horizontal(id='neues_abenteuer', method='POST', action='/abenteuer/new')
+                  input(type='hidden', name='_csrf', value=_csrf)
+                  input(type='hidden', name='canyon_id', value='#{canyon.id}')
+                  input(type='hidden', name='name', value='#{canyon.name}')
+                  input(type='hidden', name='region', value='#{canyon.region}')
+                  input(type='hidden', name='country', value='#{canyon.country}')
+                  button.btn-floating.deep-orange(type='submit')
+                    i.material-icons clear
+          div.card-action
